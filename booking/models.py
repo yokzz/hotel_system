@@ -15,4 +15,13 @@ class Room(models.Model):
         ordering = ["number"]
 
 class Booking(models.Model):
-    pass
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bookings") # CASCADE deletes all child classes 
+    room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name="bookings")
+    starttime = models.DateTimeField()
+    endtime = models.DateTimeField()
+    creation_time = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = "Booking"
+        verbose_name_plural = "Bookings"
+        ordering = ["starttime"]
