@@ -7,7 +7,7 @@ class Room(models.Model):
     location = models.TextField()
     
     def __str__(self):
-        return f"Room #{self.number} - capacity - {self.capacity}"
+        return f"Room #{self.number} - {self.capacity}"
     
     class Meta:
         verbose_name = "Room"
@@ -20,6 +20,9 @@ class Booking(models.Model):
     starttime = models.DateTimeField()
     endtime = models.DateTimeField()
     creation_time = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"{self.user.username} - {self.room}" 
     
     class Meta:
         verbose_name = "Booking"
